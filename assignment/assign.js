@@ -10,6 +10,10 @@ var app = express();
 app.use(bodyParser.text());
 app.set('view engine', 'hbs');
 
+app.all('/', (req, res) => {
+    res.send('Invalid request made. Only GET for /assignment nd POST for /ingest is allowed');
+});
+
 //reverse and display, title and body
 app.get('/assignment', (req, res) => {
     request({
@@ -52,7 +56,7 @@ app.post('/ingest', (req, res) => {
                         .write("input-text.jpg");
                         });
                     });
-        res.send('Image input-text.jpg created at ' + __dirname);
+        res.send('Image input-text.jpg created at ' + __dirname );
 });
 
 
